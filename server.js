@@ -6,8 +6,12 @@ const {
   MONGO_IP,
   MONGO_PORT,
 } = require("./config/config");
+const postRouter = require("./routes/posts.routes");
+const userRouter = require("./routes/user.routes");
 
 const app = express();
+
+app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,8 +27,7 @@ const PORT = process.env.PORT || 3000;
     });
 })();
 
-app.get("/", function (req, res) {
-  res.json("Hello from docker...");
-});
+app.use("/api/posts", postRouter);
+app.use("/api/auth", userRouter);
 
 app.listen(PORT, () => console.log(`Server runnning on port ${PORT}`));

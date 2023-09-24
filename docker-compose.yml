@@ -1,23 +1,21 @@
-# would contain configurations that are shared between enviroments
 version: "3"
 services:
-  node-app: # 1st service
+  node-app:
     build: .
     ports:
       - "3000:3000"
     environment:
       - PORT=3000
     depends_on:
-      - database # we are doing this because we don't want our node app to run before mongodb connects which can cause errors, so node app depends on mongo so our mongo service (which we called database) will run fist
+      - database
 
-  database: # 2nd service
+  database:
     image: mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=eluedev
       - MONGO_INITDB_ROOT_PASSWORD=wisdom123
     volumes:
-      - mongo-db:/data/db #adding mongo-db: make it a named volume, unlike an anonymous volume
+      - mongo-db:/data/db
 
-# doing this, because multiple services can use this volume, running it without adding this line would make it not to work
 volumes:
   mongo-db:

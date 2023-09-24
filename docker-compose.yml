@@ -1,0 +1,14 @@
+version: "3"
+services:
+  node-app:
+    # build for our current docker file location
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app # bind mount
+      - /app/node_modules # to prevent overwritinng our node modules
+    environment:
+      - PORT=3000
+    # env_file:
+    #   - ./.env # you can use this syntax if you prefer

@@ -10,4 +10,10 @@ services:
       - /app/node_modules # to prevent overwriting our node modules
     environment:
       - NODE_ENV=development
+      - MONGO_USER=eluedev
+      - MONGO_PASSWORD=wisdom123
     command: npm run dev
+  database:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=eluedev
+      - MONGO_INITDB_ROOT_PASSWORD=wisdom123

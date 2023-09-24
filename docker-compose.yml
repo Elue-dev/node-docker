@@ -7,6 +7,8 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
+    depends_on:
+      - database # we are doing this because we don't want our node app to run before mongodb connects which can cause errors, so node app depends on mongo so our mongo service (which we called database) will run fist
 
   database: # 2nd service
     image: mongo
@@ -16,6 +18,6 @@ services:
     volumes:
       - mongo-db:/data/db #adding mongo-db: make it a named volume, unlike an anonymous volume
 
-# doing this, because multiple services can use this volume, runnning it without adding this line would make it not to work
+# doing this, because multiple services can use this volume, running it without adding this line would make it not to work
 volumes:
   mongo-db:

@@ -1,5 +1,9 @@
 version: "3"
 services:
+  nginx:
+    ports:
+      - "3000:80"
+
   node-app:
     build:
       context: . #same as location of dockerfile like we did before
@@ -12,6 +16,8 @@ services:
       - NODE_ENV=development
       - MONGO_USER=eluedev
       - MONGO_PASSWORD=wisdom123
+      - SESSION_SECRET=shjcvgsdkugujgufgeukdgweuguegw
+
     command: npm run dev
   database:
     environment:

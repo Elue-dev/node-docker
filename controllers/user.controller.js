@@ -33,6 +33,7 @@ exports.signin = async function (req, res) {
 
     if (!isPasswordCorrect)
       return res.status(400).json("Invalid credentials provided");
+
     const { password: userPasword, ...otherInfo } = user._doc;
     res.status(200).json(otherInfo);
   } catch (error) {
